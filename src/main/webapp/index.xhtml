@@ -32,22 +32,28 @@
             <p:column headerText="Ações" style="width:100px;text-align:center;">
                 <p:commandButton icon="pi pi-pencil" title="Editar" update=":editDialog" oncomplete="PF('dlgEditPessoa').show()">
                     <f:setPropertyActionListener target="#{pessoaBean.pessoaSelecionada}" value="#{pessoa}" />
+                </p:commandButton>
 
-                </p:commandButton>
-                <p:commandButton icon="pi pi-trash" title="Excluir" update=":editDialog" >
+                <p:commandButton icon="pi pi-trash" title="Excluir" oncomplete="PF('confirmDialog').show();" >
                     <f:setPropertyActionListener target="#{pessoaBean.pessoaSelecionada}" value="#{pessoa}" />
-                    <p:confirm header="Confirmação" message="Você tem certeza?" icon="pi pi-exclamation-triangle" />
                 </p:commandButton>
+
             </p:column>
         </p:dataTable>
         <!-- Diálogo de confirmação para exclusão -->
-        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check"/>
-            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times"/>
+        <p:confirmDialog id="confirmDialog" widgetVar="confirmDialog" global="true" showEffect="fade" hideEffect="fade"
+                         header="Confirmação" icon="pi pi-exclamation-triangle" message="Tem certeza que deseja excluir esta pessoa?" responsive="true">
+            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" >
+                <p:ajax listener="#{pessoaBean.excluir}" oncomplete="PF('confirmDialog').hide();" update=":formLista:pessoasTable messages" />
+            </p:commandButton>
+            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" action="PF('confirmDialog').hide();" update=":formLista;"/>
         </p:confirmDialog>
     </h:form>
 
     <ui:include src="/editar-dialog.xhtml"/>
+
+    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" globalOnly="true"/>
+
 
 </h:body>
 </html>

@@ -15,15 +15,24 @@ public class PessoaDAO implements Serializable {
     private EntityManager em;
 
     public List<Pessoa> buscarTodos() {
-        return em.createQuery("SELECT p FROM Pessoa p", Pessoa.class).getResultList();
+        return em.createQuery("SELECT DISTINCT p FROM Pessoa p JOIN FETCH p.enderecos", Pessoa.class).getResultList();
     }
 
     public void salvar(Pessoa pessoa) {
+        em.persist(pessoa);
     }
 
     public void excluir(Pessoa pessoa) {
-        em.createQuery("DELETE FROM Pessoa p WHERE p.id = :id")
-                .setParameter("id", pessoa.getId())
+        // Excluir os endereços associados primeiro
+        em.createQuery("DELETE FROM Endereco e WHERE e.pessoa.id = :pessoaId")
+                .setParameter("pessoaId", pessoa.getId())
                 .executeUpdate();
+
+        // Agora, excluir a pessoa
+        em.remove(em.contains(pessoa) ? pessoa : em.merge(pessoa));
+    }
+
+    public void editar(Pessoa pessoa) {
+        em.merge(pessoa);
     }
 }

@@ -3,6 +3,10 @@ package com.kumulus.crudpessoa.bean;
 import com.kumulus.crudpessoa.business.PessoaBusiness;
 import com.kumulus.crudpessoa.dto.PessoaDTO;
 import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.FacesException;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -31,19 +35,23 @@ public class PessoaBean implements Serializable {
         pessoas = pessoaBusiness.buscarTodos();
     }
 
-    public String prepararEdicao(PessoaDTO pessoa) {
-        this.pessoaSelecionada = pessoa;
-        return null;
-    }
-
     public void editar() {
-        pessoaBusiness.salvar(pessoaSelecionada);
+        pessoaBusiness.editar(pessoaSelecionada);
         // Atualize sua lista de pessoas, se necessário
         pessoas = pessoaBusiness.buscarTodos();
     }
 
-    public void excluir(PessoaDTO pessoaDTO) {
-        pessoaBusiness.excluir(pessoaDTO);
-        pessoas = pessoaBusiness.buscarTodos();
+    public void excluir() {
+        try {
+            if(pessoaSelecionada == null || pessoaSelecionada.getId() == null) {
+                throw new FacesException("Selecione uma pessoa");
+            }
+            pessoaBusiness.excluir(pessoaSelecionada);
+            pessoas = pessoaBusiness.buscarTodos();
+        }catch(Exception e){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Não foi possível excluir a pessoa: " + e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+
     }
 }

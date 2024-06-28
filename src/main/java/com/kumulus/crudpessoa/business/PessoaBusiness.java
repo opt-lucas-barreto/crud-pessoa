@@ -21,6 +21,10 @@ public class PessoaBusiness implements Serializable {
         pessoaDAO.salvar(pessoaDTO.toPessoa());
     }
 
+    public void editar(PessoaDTO pessoaDTO) {
+        pessoaDAO.editar(pessoaDTO.toPessoa());
+    }
+
     public List<PessoaDTO> buscarTodos() {
         return pessoaDAO.buscarTodos().stream().map(Pessoa::toPessoaDTO).collect(Collectors.toList());
     }
