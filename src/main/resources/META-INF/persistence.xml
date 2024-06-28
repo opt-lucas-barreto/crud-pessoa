@@ -11,7 +11,7 @@
         <class>com.kumulus.crudpessoa.model.Endereco</class>
 
         <properties>
-            <property name="javax.persistence.query.timeout" value="5000"/>
+            <property name="jakarta.persistence.query.timeout" value="5000"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
             <property name="hibernate.show_sql" value="false" />
             <property name="hibernate.format_sql" value="false" />

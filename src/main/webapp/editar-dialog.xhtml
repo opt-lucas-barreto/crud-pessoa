@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+   <p:dialog header="Editar Pessoa" widgetVar="dlgEditPessoa" modal="true" id="editDialog">
+      <h:form id="formEdit">
+         <p:panelGrid columns="2" id="panel">
+            <p:outputLabel for="nome" value="Nome:" />
+            <p:inputText id="nome" value="#{pessoaBean.pessoaSelecionada.nome}" />
+
+            <p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
+            <p:calendar id="dataNascimento" value="#{pessoaBean.pessoaSelecionada.dataNascimento}" pattern="dd/MM/yyyy" />
+
+            <p:outputLabel for="sexo" value="Sexo:" />
+            <p:selectOneMenu id="sexo" value="#{pessoaBean.pessoaSelecionada.sexo}">
+               <f:selectItem itemLabel="Selecione" itemValue="" />
+               <f:selectItem itemLabel="Masculino" itemValue="M" />
+               <f:selectItem itemLabel="Feminino" itemValue="F" />
+            </p:selectOneMenu>
+         </p:panelGrid>
+         <p:commandButton value="Salvar" actionListener="#{pessoaBean.editar}" update=" formLista:pessoasTable" oncomplete="PF('dlgEditPessoa').hide();" />
+      </h:form>
+   </p:dialog>
+</f:view>
+</html>

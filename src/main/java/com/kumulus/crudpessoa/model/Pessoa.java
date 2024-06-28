@@ -1,5 +1,6 @@
 package com.kumulus.crudpessoa.model;
 
+import com.kumulus.crudpessoa.dto.PessoaDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,4 +33,13 @@ public class Pessoa {
     @OneToMany(mappedBy = "pessoa")
     private List<Endereco> enderecos;
 
+    public PessoaDTO toPessoaDTO() {
+        PessoaDTO pessoaDTO = new PessoaDTO();
+        pessoaDTO.setId(this.id);
+        pessoaDTO.setNome(this.nome);
+        pessoaDTO.setDataNascimento(this.dataNascimento);
+        pessoaDTO.setSexo(this.sexo);
+        pessoaDTO.setEnderecos(this.enderecos);
+        return pessoaDTO;
+    }
 }
