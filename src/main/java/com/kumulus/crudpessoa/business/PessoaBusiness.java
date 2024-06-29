@@ -17,7 +17,7 @@ public class PessoaBusiness implements Serializable {
     @EJB
     private PessoaDAO pessoaDAO;
 
-    @Inject
+    @EJB
     private EnderecoBusiness enderecoBusiness;
 
     public void salvar(PessoaDTO pessoaDTO) {

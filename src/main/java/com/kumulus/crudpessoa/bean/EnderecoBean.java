@@ -2,6 +2,7 @@ package com.kumulus.crudpessoa.bean;
 
 import com.kumulus.crudpessoa.business.EnderecoBusiness;
 import com.kumulus.crudpessoa.dto.EnderecoDTO;
+import jakarta.ejb.EJB;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -13,7 +14,7 @@ import java.util.List;
 @ViewScoped
 public class EnderecoBean implements Serializable {
 
-    @Inject
+    @EJB
     private EnderecoBusiness enderecoBusiness;
 
     public List<EnderecoDTO> getEnderecos() {

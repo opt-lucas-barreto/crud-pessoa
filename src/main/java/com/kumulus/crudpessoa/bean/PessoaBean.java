@@ -3,6 +3,7 @@ package com.kumulus.crudpessoa.bean;
 import com.kumulus.crudpessoa.business.PessoaBusiness;
 import com.kumulus.crudpessoa.dto.PessoaDTO;
 import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
 import jakarta.faces.FacesException;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -19,7 +20,7 @@ import java.util.List;
 @ViewScoped
 public class PessoaBean implements Serializable {
 
-    @Inject
+    @EJB
     private PessoaBusiness pessoaBusiness;
 
     @Getter @Setter
