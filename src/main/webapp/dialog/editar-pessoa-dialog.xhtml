@@ -7,7 +7,7 @@
       xmlns:f="http://java.sun.com/jsf/core">
 <f:view>
    <p:dialog header="Editar Pessoa" widgetVar="dlgEditPessoa" modal="true" id="editDialog">
-      <h:form id="formEdit">
+      <h:form id="formEditarPessoa">
          <p:panelGrid columns="2" id="panel">
             <p:outputLabel for="nome" value="Nome:" />
             <p:inputText id="nome" value="#{pessoaBean.pessoaSelecionada.nome}" />
@@ -22,7 +22,7 @@
                <f:selectItem itemLabel="Feminino" itemValue="F" />
             </p:selectOneMenu>
          </p:panelGrid>
-         <p:commandButton value="Salvar" actionListener="#{pessoaBean.editar}" update=" formLista:pessoasTable" oncomplete="PF('dlgEditPessoa').hide();" />
+         <p:commandButton value="Salvar" actionListener="#{pessoaBean.editar}" update=" formPessoas:pessoasTable" oncomplete="PF('dlgEditPessoa').hide();" />
       </h:form>
    </p:dialog>
 </f:view>

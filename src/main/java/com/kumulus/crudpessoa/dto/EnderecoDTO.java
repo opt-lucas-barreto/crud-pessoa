@@ -1,12 +1,9 @@
 package com.kumulus.crudpessoa.dto;
 
 import com.kumulus.crudpessoa.model.Endereco;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class EnderecoDTO {
 
