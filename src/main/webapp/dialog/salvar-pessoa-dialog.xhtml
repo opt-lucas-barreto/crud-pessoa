@@ -10,7 +10,7 @@
 
 </h:head>
 <f:view>
-   <p:dialog header="#{not empty pessoaBean.pessoaSelecionada ? 'Editar Pessoa' : 'Nova Pessoa'}" widgetVar="dlgEditPessoa" modal="true" id="editDialog">
+   <p:dialog header="#{pessoaBean.pessoaSelecionada.id != null ? 'Editar Pessoa' : 'Nova Pessoa'}" widgetVar="dlgEditPessoa" modal="true" id="editDialog"  styleClass="edit-pessoa-dialog">
       <h:form id="formEditarPessoa">
          <p:panelGrid columns="2" id="panel">
             <p:outputLabel for="nome" value="Nome:" />
@@ -26,8 +26,8 @@
                <f:selectItem itemLabel="Feminino" itemValue="F" />
             </p:selectOneMenu>
          </p:panelGrid>
-         <p:commandButton value="Salvar" actionListener="#{pessoaBean.editar}" update=" formPessoas:pessoasTable" oncomplete="PF('dlgEditPessoa').hide();" rendered="#{not empty pessoaBean.pessoaSelecionada}"/>
-         <p:commandButton value="Salvar e Cadastrar Endereço" actionListener="#{pessoaBean.novo}" update=" formEnderecos:enderecosTable" oncomplete="PF('dlgEditPessoa').hide(); PF('dlgEndereco').show();" rendered="#{empty pessoaBean.pessoaSelecionada}"/>
+         <p:commandButton value="Salvar" actionListener="#{pessoaBean.editar}" update=" formPessoas:pessoasTable" oncomplete="PF('dlgEditPessoa').hide();" rendered="#{pessoaBean.pessoaSelecionada.id != null}"/>
+         <p:commandButton value="Salvar e Cadastrar Endereço" actionListener="#{pessoaBean.adicionar}" update=" formEnderecos:enderecosTable formPessoas:pessoasTable btn-cadastrar-novo-pessoa" oncomplete="PF('dlgEditPessoa').hide(); PF('dlgEndereco').show();" rendered="#{pessoaBean.pessoaSelecionada.id eq null}"/>
       </h:form>
    </p:dialog>
 </f:view>

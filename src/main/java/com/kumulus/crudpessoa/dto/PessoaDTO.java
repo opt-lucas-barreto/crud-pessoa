@@ -5,6 +5,7 @@ import com.kumulus.crudpessoa.model.Pessoa;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +25,13 @@ public class PessoaDTO {
         pessoa.setNome(this.nome);
         pessoa.setDataNascimento(this.dataNascimento);
         pessoa.setSexo(this.sexo);
-        pessoa.setEnderecos(this.enderecos.stream().map(EnderecoDTO::toEndereco).collect(Collectors.toList()));
+        // Verifica se enderecos é null antes de chamar stream()
+        if (this.enderecos != null)
+            pessoa.setEnderecos(this.enderecos.stream().map(EnderecoDTO::toEndereco).collect(Collectors.toList()));
+        else
+            pessoa.setEnderecos(new ArrayList<>());
+
+
         return pessoa;
     }
 }

@@ -35,6 +35,10 @@
     margin-bottom: 10px;
     margin-top: 10px;
 }
-.ui-selectonemenu-panel.selectOneMenuCustom-panel {
-    z-index: 10050 !important; /* Garanta que seja maior que o z-index do diálogo */
+
+.ui-selectonemenu-panel, .ui-datepicker {
+    z-index: 10000 !important;
+}
+.edit-pessoa-dialog .ui-selectonemenu-panel, .edit-pessoa-dialog .ui-datepicker {
+    z-index: 10000 !important;
 }

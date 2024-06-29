@@ -11,9 +11,11 @@
 <h:body>
     <div class="header-container">
         <h1 class="tituloPrincipal">Crud de Pessoas</h1>
-        <p:commandButton value="Novo Pessoa" styleClass="ui-button" icon="pi pi-plus" title="Adicionar nova pessoa" update=":editDialog" oncomplete="PF('dlgEditPessoa').show()" style="margin-right: 10px">
-            <f:setPropertyActionListener target="#{pessoaBean.pessoaSelecionada}" value="#{null}" />
-        </p:commandButton>
+        <h:form id="btn-cadastrar-novo-pessoa">
+            <p:commandButton id="btnNovaPessoa" value="Novo Pessoa" styleClass="ui-button" icon="pi pi-plus" title="Adicionar nova pessoa" style="margin-right: 10px">
+               <p:ajax  listener="#{pessoaBean.novo}"  update=":formPessoas:pessoasTable messages"  oncomplete="PF('dlgEditPessoa').show()"/>
+            </p:commandButton>
+        </h:form>
     </div>
     <h:form id="formPessoas">
         <div class="div-table-pessoas">
