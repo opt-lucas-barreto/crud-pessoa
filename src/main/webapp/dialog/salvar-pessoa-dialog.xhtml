@@ -5,8 +5,12 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+   <link rel="stylesheet" href="../estilos/estilos.css"/>
+
+</h:head>
 <f:view>
-   <p:dialog header="Editar Pessoa" widgetVar="dlgEditPessoa" modal="true" id="editDialog">
+   <p:dialog header="#{not empty pessoaBean.pessoaSelecionada ? 'Editar Pessoa' : 'Nova Pessoa'}" widgetVar="dlgEditPessoa" modal="true" id="editDialog">
       <h:form id="formEditarPessoa">
          <p:panelGrid columns="2" id="panel">
             <p:outputLabel for="nome" value="Nome:" />
@@ -16,14 +20,16 @@
             <p:calendar id="dataNascimento" value="#{pessoaBean.pessoaSelecionada.dataNascimento}" pattern="dd/MM/yyyy" />
 
             <p:outputLabel for="sexo" value="Sexo:" />
-            <p:selectOneMenu id="sexo" value="#{pessoaBean.pessoaSelecionada.sexo}">
+            <p:selectOneMenu id="sexo" value="#{pessoaBean.pessoaSelecionada.sexo}" styleClass="selectOneMenuCustom">
                <f:selectItem itemLabel="Selecione" itemValue="" />
                <f:selectItem itemLabel="Masculino" itemValue="M" />
                <f:selectItem itemLabel="Feminino" itemValue="F" />
             </p:selectOneMenu>
          </p:panelGrid>
-         <p:commandButton value="Salvar" actionListener="#{pessoaBean.editar}" update=" formPessoas:pessoasTable" oncomplete="PF('dlgEditPessoa').hide();" />
+         <p:commandButton value="Salvar" actionListener="#{pessoaBean.editar}" update=" formPessoas:pessoasTable" oncomplete="PF('dlgEditPessoa').hide();" rendered="#{not empty pessoaBean.pessoaSelecionada}"/>
+         <p:commandButton value="Salvar e Cadastrar Endereço" actionListener="#{pessoaBean.novo}" update=" formEnderecos:enderecosTable" oncomplete="PF('dlgEditPessoa').hide(); PF('dlgEndereco').show();" rendered="#{empty pessoaBean.pessoaSelecionada}"/>
       </h:form>
    </p:dialog>
 </f:view>
 </html>
+

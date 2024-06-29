@@ -52,4 +52,9 @@ public class PessoaBean implements Serializable {
             Mensagens.criarMensagem(FacesMessage.SEVERITY_ERROR, "Erro ao excluir pessoa", e.getMessage());
         }
     }
+
+    public void novo() {
+        pessoaBusiness.salvar(pessoaSelecionada);
+        pessoas = pessoaBusiness.buscarTodos();
+    }
 }

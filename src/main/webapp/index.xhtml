@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="estilos/estilos.css"/>
 </h:head>
 <h:body>
-    <h1 class="tituloPrincipal">Crud de Pessoas</h1>
+    <div class="header-container">
+        <h1 class="tituloPrincipal">Crud de Pessoas</h1>
+        <p:commandButton value="Novo Pessoa" styleClass="ui-button" icon="pi pi-plus" title="Adicionar nova pessoa" update=":editDialog" oncomplete="PF('dlgEditPessoa').show()" style="margin-right: 10px">
+            <f:setPropertyActionListener target="#{pessoaBean.pessoaSelecionada}" value="#{null}" />
+        </p:commandButton>
+    </div>
     <h:form id="formPessoas">
         <div class="div-table-pessoas">
             <p:dataTable var="pessoa" id="pessoasTable" value="#{pessoaBean.pessoas}"
@@ -61,7 +66,7 @@
         </p:confirmDialog>
     </h:form>
 
-    <ui:include src="/dialog/editar-pessoa-dialog.xhtml"/>
+    <ui:include src="/dialog/salvar-pessoa-dialog.xhtml"/>
     <ui:include src="/dialog/listar-enderecos-dialog.xhtml"/>
 
     <p:dialog widgetVar="messagesDialog" modal="true" header="Erro" resizable="false" closable="true" showEffect="fade" hideEffect="fade"  responsive="true">
