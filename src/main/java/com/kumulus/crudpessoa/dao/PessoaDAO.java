@@ -23,12 +23,6 @@ public class PessoaDAO implements Serializable {
     }
 
     public void excluir(Pessoa pessoa) {
-        // Excluir os endereços associados primeiro
-        em.createQuery("DELETE FROM Endereco e WHERE e.pessoa.id = :pessoaId")
-                .setParameter("pessoaId", pessoa.getId())
-                .executeUpdate();
-
-        // Agora, excluir a pessoa
         em.remove(em.contains(pessoa) ? pessoa : em.merge(pessoa));
     }
 

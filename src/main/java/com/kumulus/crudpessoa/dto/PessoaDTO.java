@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +16,7 @@ public class PessoaDTO {
     private String nome;
     private Date dataNascimento;
     private String sexo;
-    private List<Endereco> enderecos;
+    private List<EnderecoDTO> enderecos;
 
     public Pessoa toPessoa() {
         Pessoa pessoa = new Pessoa();
@@ -23,8 +24,7 @@ public class PessoaDTO {
         pessoa.setNome(this.nome);
         pessoa.setDataNascimento(this.dataNascimento);
         pessoa.setSexo(this.sexo);
-        pessoa.setEnderecos(this.enderecos);
-
+        pessoa.setEnderecos(this.enderecos.stream().map(EnderecoDTO::toEndereco).collect(Collectors.toList()));
         return pessoa;
     }
 }

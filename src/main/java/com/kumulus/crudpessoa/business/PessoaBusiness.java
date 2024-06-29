@@ -5,6 +5,7 @@ import com.kumulus.crudpessoa.dto.PessoaDTO;
 import com.kumulus.crudpessoa.model.Pessoa;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,8 +17,10 @@ public class PessoaBusiness implements Serializable {
     @EJB
     private PessoaDAO pessoaDAO;
 
-    public void salvar(PessoaDTO pessoaDTO) {
+    @Inject
+    private EnderecoBusiness enderecoBusiness;
 
+    public void salvar(PessoaDTO pessoaDTO) {
         pessoaDAO.salvar(pessoaDTO.toPessoa());
     }
 
@@ -30,6 +33,7 @@ public class PessoaBusiness implements Serializable {
     }
 
     public void excluir(PessoaDTO pessoaDTO) {
+        enderecoBusiness.excluirPorPessoaId(pessoaDTO.getId());
         pessoaDAO.excluir(pessoaDTO.toPessoa());
     }
 }

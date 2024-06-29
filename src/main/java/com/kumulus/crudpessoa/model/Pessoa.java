@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -39,7 +40,7 @@ public class Pessoa {
         pessoaDTO.setNome(this.nome);
         pessoaDTO.setDataNascimento(this.dataNascimento);
         pessoaDTO.setSexo(this.sexo);
-        pessoaDTO.setEnderecos(this.enderecos);
+        pessoaDTO.setEnderecos(this.enderecos.stream().map(Endereco::toEnderecoDTO).collect(Collectors.toList()));
         return pessoaDTO;
     }
 }
