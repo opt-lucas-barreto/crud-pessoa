@@ -2,8 +2,12 @@ package com.kumulus.crudpessoa.bean;
 
 import com.kumulus.crudpessoa.business.EnderecoBusiness;
 import com.kumulus.crudpessoa.dto.EnderecoDTO;
+import com.kumulus.crudpessoa.dto.PessoaDTO;
+import com.kumulus.crudpessoa.utils.Mensagens;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
+import jakarta.faces.FacesException;
+import jakarta.faces.application.FacesMessage;
 import jakarta.faces.event.ActionEvent;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -22,7 +26,10 @@ public class EnderecoBean implements Serializable {
     private EnderecoBusiness enderecoBusiness;
 
     @Inject
-    private PessoaBean pessoaBean;
+    PessoaBean pessoaBean;
+
+    @Getter @Setter
+    private EnderecoDTO enderecoSelecionado;
 
     @Getter @Setter
     private List<EnderecoDTO> enderecos;
@@ -45,6 +52,22 @@ public class EnderecoBean implements Serializable {
     }
 
     public List<EnderecoDTO> buscarEnderecosPorPessoaSelecionada() {
+
         return this.getEnderecosPorPessoaId(pessoaBean.getPessoaSelecionada().getId());
+    }
+
+    public void excluir() {
+        try {
+            if(enderecoSelecionado == null || enderecoSelecionado.getId() == null) {
+                throw new FacesException("Selecione um endereço");
+            }
+            this.enderecoBusiness.excluir(enderecoSelecionado);
+        }catch(Exception e){
+            Mensagens.criarMensagem(FacesMessage.SEVERITY_ERROR, "Erro ao excluir endereço", e.getMessage());
+        }
+    }
+
+    public void editar() {
+        enderecoBusiness.editar(enderecoSelecionado);
     }
 }

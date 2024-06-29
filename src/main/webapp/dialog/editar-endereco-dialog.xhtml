@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+   <p:dialog header="Editar Endereço" widgetVar="dlgEditEndereco" modal="true" id="editEnderecoDialog"
+             resizable="false" closable="true" showEffect="fade" hideEffect="fade"
+             position="center" responsive="true" >
+      <h:form id="formEditarEndereco">
+         <p:panelGrid columns="2" id="panel" style="margin: 0 30px;">
+            <p:outputLabel for="estado" value="Estado:" />
+            <p:inputText id="estado" value="#{enderecoBean.enderecoSelecionado.estado}" />
+
+            <p:outputLabel for="cidade" value="Cidade:" />
+            <p:inputText id="cidade" value="#{enderecoBean.enderecoSelecionado.cidade}" />
+
+            <p:outputLabel for="logradouro" value="Logradouro:" />
+            <p:inputText id="logradouro" value="#{enderecoBean.enderecoSelecionado.logradouro}" />
+
+            <p:outputLabel for="numero" value="Número:" />
+            <p:inputText id="numero" value="#{enderecoBean.enderecoSelecionado.numero}" />
+
+            <p:outputLabel for="bairro" value="Bairro:" />
+            <p:inputText id="bairro" value="#{enderecoBean.enderecoSelecionado.bairro}" />
+
+            <p:outputLabel for="cep" value="CEP:" />
+            <p:inputMask id="cep" value="#{enderecoBean.enderecoSelecionado.cep}" mask="99999-999" />
+
+            <p:commandButton value="Salvar" action="#{enderecoBean.editar}" update=":formEnderecos" oncomplete="PF('dlgEditEndereco').hide();" />
+         </p:panelGrid>
+      </h:form>
+   </p:dialog>
+</f:view>
+</html>

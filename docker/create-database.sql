@@ -78,3 +78,4 @@ INSERT INTO endereco(estado, cidade, logradouro, numero, bairro, cep, idPessoa) 
 ('MS', 'Dourados', 'Avenida Marcelino Pires', 767, 'Centro', '23456004', 13),
 ('MT', 'Rondonópolis', 'Avenida Lions Internacional', 878, 'Centro', '23456005', 14),
 ('GO', 'Anápolis', 'Avenida Brasil', 989, 'Jundiaí', '23456006', 15);
+

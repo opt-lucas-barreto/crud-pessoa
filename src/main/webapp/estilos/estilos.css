@@ -24,3 +24,6 @@
     background-color: #000000 !important; /* Cor do fundo */
     opacity: 0.7 !important; /* Opacidade */
 }
+.ui-dialog {
+    z-index: 10000 !important;
+}

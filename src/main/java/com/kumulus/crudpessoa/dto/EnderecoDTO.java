@@ -24,7 +24,7 @@ public class EnderecoDTO {
         end.setLogradouro(this.logradouro);
         end.setNumero(this.numero);
         end.setBairro(this.bairro);
-        end.setCep(this.cep);
+        end.setCep(this.cep.replaceAll("[^0-9]", ""));
         end.setIdPessoa(this.idPessoa);
         return end;
     }
