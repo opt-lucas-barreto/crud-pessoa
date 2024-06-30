@@ -27,7 +27,7 @@
             </p:selectOneMenu>
          </p:panelGrid>
          <p:commandButton value="Salvar" actionListener="#{pessoaBean.editar}" update=" formPessoas:pessoasTable" oncomplete="PF('dlgEditPessoa').hide();" rendered="#{pessoaBean.pessoaSelecionada.id != null}"/>
-         <p:commandButton value="Salvar e Cadastrar Endereço" actionListener="#{pessoaBean.adicionar}" update=" formEnderecos:enderecosTable formPessoas:pessoasTable btn-cadastrar-novo-pessoa" oncomplete="PF('dlgEditPessoa').hide(); PF('dlgEndereco').show();" rendered="#{pessoaBean.pessoaSelecionada.id eq null}"/>
+         <p:commandButton value="Salvar" actionListener="#{pessoaBean.adicionar}" update="formPessoas:pessoasTable" oncomplete=" PF('dlgEditPessoa').hide();" rendered="#{pessoaBean.pessoaSelecionada.id eq null}"/>
       </h:form>
    </p:dialog>
 </f:view>

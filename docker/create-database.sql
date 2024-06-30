@@ -9,7 +9,8 @@ CREATE TABLE pessoa (
     nome VARCHAR(20) NOT NULL,
     dataNascimento DATE NOT NULL,
     sexo VARCHAR(1) NOT NULL,
-    CONSTRAINT PK_Pessoa PRIMARY KEY (id)
+    CONSTRAINT PK_Pessoa PRIMARY KEY (id),
+    CONSTRAINT UC_Pessoa UNIQUE (nome, dataNascimento, sexo)
 );
 
 CREATE SEQUENCE endereco_seq;
@@ -24,7 +25,8 @@ CREATE TABLE endereco (
   cep VARCHAR(8) NOT NULL,
   idPessoa INT NOT NULL,
   CONSTRAINT PK_Endereco PRIMARY KEY (id),
-  CONSTRAINT FK_Endereco_Pessoa FOREIGN KEY (idPessoa) REFERENCES pessoa (id)
+  CONSTRAINT FK_Endereco_Pessoa FOREIGN KEY (idPessoa) REFERENCES pessoa (id),
+  CONSTRAINT UC_Endereco_Estado_Cidade_Logradouro_Numero_Bairro_Cep_IdPessoa UNIQUE (estado, cidade, logradouro, numero, bairro, cep, idPessoa)
 );
 
 INSERT INTO pessoa(nome, dataNascimento, sexo)

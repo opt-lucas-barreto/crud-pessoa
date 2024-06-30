@@ -36,4 +36,8 @@ public class PessoaBusiness implements Serializable {
         enderecoBusiness.excluirPorPessoaId(pessoaDTO.getId());
         pessoaDAO.excluir(pessoaDTO.toPessoa());
     }
+
+    public PessoaDTO buscarPessoa(PessoaDTO pessoaSelecionada) {
+        return pessoaDAO.buscarPessoa(pessoaSelecionada).toPessoaDTO();
+    }
 }

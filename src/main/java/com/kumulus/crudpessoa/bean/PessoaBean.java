@@ -32,6 +32,9 @@ public class PessoaBean implements Serializable {
     @Getter @Setter
     private PessoaDTO pessoaSelecionada;
 
+    @Getter @Setter
+    private boolean operacaoAdicionarNovoSucesso;
+
     @PostConstruct
     public void init() {
         pessoaSelecionada = new PessoaDTO();
@@ -40,9 +43,10 @@ public class PessoaBean implements Serializable {
 
 
     public void editar() {
-        pessoaBusiness.editar(pessoaSelecionada);
-        // Atualize sua lista de pessoas, se necessário
-        pessoas = pessoaBusiness.buscarTodos();
+        if(validarPessoaDTO(pessoaSelecionada)) {
+            pessoaBusiness.editar(pessoaSelecionada);
+            pessoas = pessoaBusiness.buscarTodos();
+        }
     }
 
     public void excluir() {
@@ -65,8 +69,12 @@ public class PessoaBean implements Serializable {
     public void adicionar() {
         if(validarPessoaDTO(pessoaSelecionada)) {
             pessoaBusiness.salvar(pessoaSelecionada);
-            pessoas = pessoaBusiness.buscarTodos();
+            pessoas = List.of(pessoaBusiness.buscarPessoa(pessoaSelecionada));
        }
+    }
+
+    public void mostrarTodos() {
+        pessoas = pessoaBusiness.buscarTodos();
     }
 
     private Boolean validarPessoaDTO(PessoaDTO pessoaDTO) {

@@ -11,10 +11,15 @@
 <h:body>
     <div class="header-container">
         <h1 class="tituloPrincipal">Crud de Pessoas</h1>
-        <h:form id="btn-cadastrar-novo-pessoa">
-            <p:commandButton id="btnNovaPessoa" value="Novo Pessoa" styleClass="ui-button" icon="pi pi-plus" title="Adicionar nova pessoa" style="margin-right: 10px">
-               <p:ajax  listener="#{pessoaBean.novo}"  update=":formPessoas:pessoasTable messages"  oncomplete="PF('dlgEditPessoa').show()"/>
-            </p:commandButton>
+        <h:form id="btn-crud-pessoa">
+            <p:panelGrid columns="2" id="panel">
+                <p:commandButton id="btnNovaPessoa" value="Novo Pessoa" styleClass="ui-button" icon="pi pi-plus"  title="Adicionar nova pessoa" style="margin-right: 5px">
+                   <p:ajax  listener="#{pessoaBean.novo}"  update=":formPessoas:pessoasTable messages"  oncomplete="PF('dlgEditPessoa').show()"/>
+                </p:commandButton>
+                <p:commandButton id="mostrarTodos" value="Mostrar Todos" styleClass="ui-button" icon="pi pi-list"  title="Mostrar todas as pessoas" style="margin-right: 10px">
+                    <p:ajax listener="#{pessoaBean.mostrarTodos}" update=":formPessoas:pessoasTable"/>
+                </p:commandButton>
+            </p:panelGrid>
         </h:form>
     </div>
     <h:form id="formPessoas">
