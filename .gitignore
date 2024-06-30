@@ -70,5 +70,4 @@ build/
 hs_err_pid*
 replay_pid*
 
-!/target/crud-pessoa-1.0-SNAPSHOT.war
 !/docker/custom-modules/postgresql-42.7.3.jar

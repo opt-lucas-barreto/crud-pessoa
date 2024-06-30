@@ -19,16 +19,21 @@ Antes de iniciar, certifique-se de que você tem o Docker instalado e configurad
    ```bash
    git clone https://github.com/opt-lucas-barreto/crud-pessoa.git
    
-2. Navegar até a Pasta do Docker Após clonar o repositório, navegue até a pasta /docker/ dentro do projeto 
-   ```bash
-    cd crud-pessoa/docker/
+2. Execute o comando maven:
 
-3. Executar o Docker Compose Dentro da pasta /docker/, execute o Docker Compose para iniciar todos os serviços necessários para a aplicação:
+    ```bash
+   mvn clean install
+
+3. Navegar até a Pasta do Docker Após clonar o repositório, navegue até a pasta /docker/ dentro do projeto 
+   ```bash
+    cd /docker/
+
+4. Executar o Docker Compose Dentro da pasta /docker/, execute o Docker Compose para iniciar todos os serviços necessários para a aplicação:
 
     ```bash
    docker-compose up -d
    
-4. Acessar a Aplicação Com os serviços devidamente executando, você pode acessar a aplicação através do navegador web no seguinte endereço:
+5. Acessar a Aplicação Com os serviços devidamente executando, você pode acessar a aplicação através do navegador web no seguinte endereço:
 
     ```bash
    http://localhost:8080/crud-pessoa/
