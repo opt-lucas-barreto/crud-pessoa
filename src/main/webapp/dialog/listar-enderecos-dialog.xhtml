@@ -6,7 +6,6 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-   <title>Endereços</title>
    <link rel="stylesheet" href="../estilos/estilos.css"/>
 </h:head>
 <f:view>
@@ -15,7 +14,18 @@
              id="enderecosDialog" position="center" responsive="true" width="80%" height="80%"
              onShow="PF('dlgEnderecos').content.css('overflow', 'hidden')" style="max-height:90vh; overflow:auto;"
              blockScroll="true">
-
+      <div class="header-container">
+         <h:form id="btn-crud-endereco">
+            <p:panelGrid columns="2" id="panel">
+               <p:commandButton id="btnNovoEndereco" value="Novo Endereço" styleClass="ui-button" icon="pi pi-plus"  title="Adicionar novo endereço" style="margin-right: 5px; white-space: nowrap;">
+                  <p:ajax  listener="#{enderecoBean.novo}"  update=":formEnderecos:enderecosTable messages"  oncomplete="PF('dlgEditEndereco').show()"/>
+               </p:commandButton>
+               <p:commandButton id="mostrarTodos" value="Mostrar Todos" styleClass="ui-button" icon="pi pi-list"  title="Mostrar todos enderços da pessoa" style="margin-right: 10px; white-space: nowrap;">
+                  <p:ajax listener="#{enderecoBean.getEnderecosList}" update=":formEnderecos:enderecosTable"/>
+               </p:commandButton>
+            </p:panelGrid>
+         </h:form>
+      </div>
       <h:form id="formEnderecos">
          <div style="max-height:80vh; overflow:auto;">
             <p:dataTable var="endereco" value="#{enderecoBean.buscarEnderecosPorPessoaSelecionada()}" id="enderecosTable"

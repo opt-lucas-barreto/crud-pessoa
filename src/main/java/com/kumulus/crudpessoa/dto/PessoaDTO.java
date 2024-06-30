@@ -5,6 +5,7 @@ import com.kumulus.crudpessoa.model.Pessoa;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 public class PessoaDTO {
     private Integer id;
     private String nome;
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
     private String sexo;
     private List<EnderecoDTO> enderecos;
 

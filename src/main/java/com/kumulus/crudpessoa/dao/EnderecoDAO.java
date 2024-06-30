@@ -10,6 +10,7 @@ import java.util.List;
 
 @Stateless
 public class EnderecoDAO implements Serializable {
+
     @PersistenceContext
     private EntityManager em;
 

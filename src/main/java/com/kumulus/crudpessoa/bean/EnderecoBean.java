@@ -39,6 +39,11 @@ public class EnderecoBean implements Serializable {
 
     }
 
+    public void novo() {
+        this.enderecoSelecionado = new EnderecoDTO();
+        this.enderecoSelecionado.setIdPessoa(pessoaBean.getPessoaSelecionada().getId());
+    }
+
     public List<EnderecoDTO> getEnderecosList() {
         return this.enderecoBusiness.buscarTodos();
     }
@@ -58,9 +63,6 @@ public class EnderecoBean implements Serializable {
 
     public void excluir() {
         try {
-            if(enderecoSelecionado == null || enderecoSelecionado.getId() == null) {
-                throw new FacesException("Selecione um endereço");
-            }
             this.enderecoBusiness.excluir(enderecoSelecionado);
         }catch(Exception e){
             Mensagens.criarMensagem(FacesMessage.SEVERITY_ERROR, "Erro ao excluir endereço", e.getMessage());

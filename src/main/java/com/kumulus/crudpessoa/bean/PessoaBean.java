@@ -88,7 +88,7 @@ public class PessoaBean implements Serializable {
             erro = true;
         }
 
-        if (pessoaDTO.getDataNascimento() == null || pessoaDTO.getDataNascimento().after(java.sql.Date.valueOf(LocalDate.now()))) {
+        if (pessoaDTO.getDataNascimento() == null || pessoaDTO.getDataNascimento().isAfter(LocalDate.now())) {
             Mensagens.criarMensagem(FacesMessage.SEVERITY_ERROR, "Erro ao salvar pessoa","Data de Nascimento inválida: A data de nascimento não pode ser nula e deve ser anterior à data atual.");
             erro = true;
         }

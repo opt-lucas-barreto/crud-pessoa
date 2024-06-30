@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
 <f:view>
-   <p:dialog header="Editar Endereço" widgetVar="dlgEditEndereco" modal="true" id="editEnderecoDialog"
+   <p:dialog header="#{enderecoBean.enderecoSelecionado.id != null ? 'Editar Endereço' : 'Novo Endereço'}" widgetVar="dlgEditEndereco" modal="true" id="editEnderecoDialog"
              resizable="false" closable="true" showEffect="fade" hideEffect="fade"
              position="center" responsive="true" >
       <h:form id="formEditarEndereco">

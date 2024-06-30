@@ -1,11 +1,14 @@
 package com.kumulus.crudpessoa.model;
 
+import com.kumulus.crudpessoa.dto.EnderecoDTO;
 import com.kumulus.crudpessoa.dto.PessoaDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,7 +29,7 @@ public class Pessoa {
     private String nome;
 
     @Column(nullable = false)
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     @Column(nullable = false)
     private String sexo;
@@ -40,7 +43,10 @@ public class Pessoa {
         pessoaDTO.setNome(this.nome);
         pessoaDTO.setDataNascimento(this.dataNascimento);
         pessoaDTO.setSexo(this.sexo);
-        pessoaDTO.setEnderecos(this.enderecos.stream().map(Endereco::toEnderecoDTO).collect(Collectors.toList()));
+        if (this.enderecos != null)
+            pessoaDTO.setEnderecos(this.enderecos.stream().map(Endereco::toEnderecoDTO).collect(Collectors.toList()));
+        else
+            pessoaDTO.setEnderecos(new ArrayList<>());
         return pessoaDTO;
     }
 }
