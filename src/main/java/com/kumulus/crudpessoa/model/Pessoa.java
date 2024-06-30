@@ -29,7 +29,7 @@ public class Pessoa {
     private String nome;
 
     @Column(nullable = false)
-    private LocalDate dataNascimento;
+    private Date dataNascimento;
 
     @Column(nullable = false)
     private String sexo;

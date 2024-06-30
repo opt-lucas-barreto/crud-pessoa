@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class PessoaDAOTest {
@@ -70,7 +69,9 @@ public class PessoaDAOTest {
     public void deveBuscarPessoaComSucesso() {
         PessoaDTO pessoaDTO = new PessoaDTO();
         pessoaDTO.setNome("Teste");
-        pessoaDTO.setDataNascimento(LocalDate.of(1990, 1, 1));
+        LocalDate localDate = LocalDate.of(1990, 1, 1);
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        pessoaDTO.setDataNascimento(date);
         pessoaDTO.setSexo("M");
 
         when(em.createQuery(anyString(), eq(Pessoa.class))).thenReturn(query);

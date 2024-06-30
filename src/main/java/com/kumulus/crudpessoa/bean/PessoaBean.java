@@ -3,7 +3,6 @@ package com.kumulus.crudpessoa.bean;
 import com.kumulus.crudpessoa.business.PessoaBusiness;
 import com.kumulus.crudpessoa.dto.EnderecoDTO;
 import com.kumulus.crudpessoa.dto.PessoaDTO;
-import com.kumulus.crudpessoa.exception.BusinessException;
 import com.kumulus.crudpessoa.utils.Mensagens;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
@@ -12,10 +11,9 @@ import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
-import org.postgresql.util.PSQLException;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Named
@@ -88,7 +86,7 @@ public class PessoaBean implements Serializable {
             erro = true;
         }
 
-        if (pessoaDTO.getDataNascimento() == null || pessoaDTO.getDataNascimento().isAfter(LocalDate.now())) {
+        if (pessoaDTO.getDataNascimento() == null || pessoaDTO.getDataNascimento().after(new Date())) {
             Mensagens.criarMensagem(FacesMessage.SEVERITY_ERROR, "Erro ao salvar pessoa","Data de Nascimento inválida: A data de nascimento não pode ser nula e deve ser anterior à data atual.");
             erro = true;
         }

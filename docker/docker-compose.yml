@@ -7,3 +7,22 @@ services:
       POSTGRES_PASSWORD: "Postgres2024!"
     ports:
       - "5432:5432"
+
+  wildfly:
+    image: jboss/wildfly:latest
+    ports:
+      - "8080:8080"
+      - "9990:9990"
+    volumes:
+      - ./target/crud-pessoa-1.0-SNAPSHOT.war:/opt/jboss/wildfly/standalone/deployments/crud-pessoa.war
+      - ./config-datasource.cli:/opt/jboss/wildfly/config-datasource.cli
+      - ./custom-modules/postgresql-42.7.3.jar:/opt/jboss/wildfly/modules/org/postgresql/main/postgresql-42.7.3.jar
+      - ./custom-modules/module.xml:/opt/jboss/wildfly/modules/org/postgresql/main/module.xml
+    environment:
+      - ADMIN_USER=admin
+      - ADMIN_PASSWORD=admin
+    command: >
+      /bin/sh -c "touch /opt/jboss/wildfly/standalone/deployments/crud-pessoa.war.dodeploy &&
+      /opt/jboss/wildfly/bin/add-user.sh admin -p admin && 
+      /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0 & sleep 5 &&
+      /opt/jboss/wildfly/bin/jboss-cli.sh -c --controller=localhost:9990 --file=/opt/jboss/wildfly/config-datasource.cli && wait"

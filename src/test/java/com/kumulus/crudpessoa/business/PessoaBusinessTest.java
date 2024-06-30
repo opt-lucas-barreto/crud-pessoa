@@ -18,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,7 +47,9 @@ public class PessoaBusinessTest {
         pessoa = new Pessoa();
         pessoa.setId(1);
         pessoa.setNome("Nome da Pessoa");
-        pessoa.setDataNascimento(LocalDate.of(1990, 1, 1));
+        LocalDate localDate = LocalDate.of(1990, 1, 1);
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        pessoa.setDataNascimento(date);
         pessoa.setSexo("Masculino");
         pessoa.setEnderecos(new ArrayList<>());
 

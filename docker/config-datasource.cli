@@ -1,0 +1,5 @@
+batch
+module add --name=com.postgres --resources=/opt/jboss/wildfly/modules/org/postgresql/main/postgresql-42.7.3.jar --dependencies=javax.api,javax.transaction.api
+/subsystem=datasources/jdbc-driver=postgres:add(driver-name="postgres",driver-module-name="com.postgres",driver-xa-datasource-class-name="org.postgresql.xa.PGXADataSource")
+data-source add --name=PostgresDS --driver-name=postgres --jndi-name=java:jboss/datasources/PostgresDS --connection-url=jdbc:postgresql://postgres:5432/kumulus --user-name=postgres --password=Postgres2024! --use-ccm=false --max-pool-size=25 --blocking-timeout-wait-millis=5000 --enabled=true --jta=true
+run-batch

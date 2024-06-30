@@ -36,9 +36,7 @@ public class EnderecoBeanTest {
         Pessoa pessoaSelecionada = new Pessoa();
         pessoaSelecionada.setId(1);
         when(pessoaBean.getPessoaSelecionada()).thenReturn(pessoaSelecionada.toPessoaDTO());
-
         enderecoBean.novo();
-
         assertNotNull(enderecoBean.getEnderecoSelecionado());
         assertEquals(1, enderecoBean.getEnderecoSelecionado().getIdPessoa());
     }
@@ -73,5 +71,4 @@ public class EnderecoBeanTest {
         verify(enderecoBusiness, times(1)).excluir(enderecoDTO);
     }
 
-    // Adicione mais testes conforme necessário para cobrir outros métodos e cenários
 }

@@ -1,11 +1,7 @@
 package com.kumulus.crudpessoa.bean;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
-import com.kumulus.crudpessoa.bean.PessoaBean;
 import com.kumulus.crudpessoa.business.PessoaBusiness;
 import com.kumulus.crudpessoa.dto.PessoaDTO;
-import com.kumulus.crudpessoa.model.Pessoa;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -17,6 +13,8 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static org.mockito.Mockito.*;
 
 public class PessoaBeanTest {
 
@@ -36,7 +34,9 @@ public class PessoaBeanTest {
         pessoaDTO = new PessoaDTO();
         pessoaDTO.setId(pessoaId);
         pessoaDTO.setNome("Teste Pessoa");
-        pessoaDTO.setDataNascimento(LocalDate.of(1990, 1, 1));
+        LocalDate localDate = LocalDate.of(1990, 1, 1);
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        pessoaDTO.setDataNascimento(date);
         pessoaDTO.setEnderecos(new ArrayList<>());
         pessoaDTO.setSexo("M");
         pessoaBean.setPessoaSelecionada(pessoaDTO);
@@ -55,22 +55,15 @@ public class PessoaBeanTest {
 
     @Test
     public void deveEditarPessoaComSucesso() {
-        // Configura pessoaDTO para simular uma edição
         pessoaDTO.setNome("Nome Editado");
-        pessoaBean.setPessoaSelecionada(pessoaDTO); // Garante que pessoaBean está utilizando o DTO editado
-
-        pessoaBean.salvarOuEditar(); // Supondo que o método a ser testado é salvarOuEditar
-
+        pessoaBean.setPessoaSelecionada(pessoaDTO);
+        pessoaBean.salvarOuEditar();
         verify(pessoaBusiness, times(1)).editar(pessoaDTO);
     }
 
     @Test
     public void deveExcluirPessoaComSucesso() {
-        // Utiliza pessoaDTO configurado no setUp
-        pessoaBean.excluir(); // Assume que o método excluir() não precisa de argumentos
-
+        pessoaBean.excluir();
         verify(pessoaBusiness, times(1)).excluir(pessoaDTO);
     }
-
-    // Considerar a criação de mais testes para cobrir todos os métodos públicos de PessoaBean
 }
