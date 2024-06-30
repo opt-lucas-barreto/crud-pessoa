@@ -39,7 +39,7 @@ public class PessoaBean implements Serializable {
     public void editar() {
         if(validarPessoaDTO(pessoaSelecionada)) {
             pessoaBusiness.editar(pessoaSelecionada);
-            pessoas = pessoaBusiness.buscarTodos();
+            pessoas = List.of(pessoaBusiness.buscarPessoa(pessoaSelecionada));
         }
     }
 
