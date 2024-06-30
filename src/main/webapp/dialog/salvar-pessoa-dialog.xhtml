@@ -26,8 +26,10 @@
                <f:selectItem itemLabel="Feminino" itemValue="F" />
             </p:selectOneMenu>
          </p:panelGrid>
-         <p:commandButton value="Salvar" actionListener="#{pessoaBean.editar}" update=" formPessoas:pessoasTable" oncomplete="PF('dlgEditPessoa').hide();" rendered="#{pessoaBean.pessoaSelecionada.id != null}"/>
-         <p:commandButton value="Salvar" actionListener="#{pessoaBean.adicionar}" update="formPessoas:pessoasTable" oncomplete=" PF('dlgEditPessoa').hide();" rendered="#{pessoaBean.pessoaSelecionada.id eq null}"/>
+         <p:commandButton value="Salvar"
+                          actionListener="#{pessoaBean.salvarOuEditar}"
+                          update="formPessoas:pessoasTable messages"
+                          oncomplete="PF('dlgEditPessoa').hide();"/>
       </h:form>
    </p:dialog>
 </f:view>

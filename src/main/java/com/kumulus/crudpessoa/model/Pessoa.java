@@ -31,7 +31,7 @@ public class Pessoa {
     @Column(nullable = false)
     private String sexo;
 
-    @OneToMany(mappedBy = "pessoa")
+    @OneToMany(mappedBy = "pessoa", fetch = FetchType.EAGER)
     private List<Endereco> enderecos;
 
     public PessoaDTO toPessoaDTO() {

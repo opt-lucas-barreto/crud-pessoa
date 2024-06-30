@@ -3,17 +3,16 @@ package com.kumulus.crudpessoa.bean;
 import com.kumulus.crudpessoa.business.PessoaBusiness;
 import com.kumulus.crudpessoa.dto.EnderecoDTO;
 import com.kumulus.crudpessoa.dto.PessoaDTO;
+import com.kumulus.crudpessoa.exception.BusinessException;
 import com.kumulus.crudpessoa.utils.Mensagens;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
-import jakarta.ejb.EJBException;
-import jakarta.faces.FacesException;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
-import org.primefaces.PrimeFaces;
+import org.postgresql.util.PSQLException;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -32,9 +31,6 @@ public class PessoaBean implements Serializable {
     @Getter @Setter
     private PessoaDTO pessoaSelecionada;
 
-    @Getter @Setter
-    private boolean operacaoAdicionarNovoSucesso;
-
     @PostConstruct
     public void init() {
         pessoaSelecionada = new PessoaDTO();
@@ -51,9 +47,6 @@ public class PessoaBean implements Serializable {
 
     public void excluir() {
         try {
-            if(pessoaSelecionada == null || pessoaSelecionada.getId() == null) {
-                throw new FacesException("Selecione uma pessoa");
-            }
             pessoaBusiness.excluir(pessoaSelecionada);
             pessoas = pessoaBusiness.buscarTodos();
         }catch(Exception e){
@@ -71,6 +64,17 @@ public class PessoaBean implements Serializable {
             pessoaBusiness.salvar(pessoaSelecionada);
             pessoas = List.of(pessoaBusiness.buscarPessoa(pessoaSelecionada));
        }
+    }
+
+    public void salvarOuEditar() {
+        try {
+            if (pessoaSelecionada.getId() != null)
+                editar();
+             else
+                adicionar();
+        } catch (Exception e) {
+           Mensagens.criarMensagem(FacesMessage.SEVERITY_ERROR, "Erro ao salvar pessoa", e.getCause().getMessage());
+        }
     }
 
     public void mostrarTodos() {

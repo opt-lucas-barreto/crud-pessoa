@@ -3,14 +3,18 @@ package com.kumulus.crudpessoa.dao;
 import com.kumulus.crudpessoa.dto.PessoaDTO;
 import com.kumulus.crudpessoa.model.Pessoa;
 import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import org.hibernate.Hibernate;
 
 import java.io.Serializable;
 import java.util.List;
 
 @Stateless
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class PessoaDAO implements Serializable {
 
     @PersistenceContext
@@ -21,6 +25,7 @@ public class PessoaDAO implements Serializable {
     }
 
     public void salvar(Pessoa pessoa) {
+
         em.persist(pessoa);
     }
 
