@@ -21,7 +21,7 @@ Antes de iniciar, certifique-se de que você tem o Docker instalado e configurad
    
 2. Navegar até a Pasta do Docker Após clonar o repositório, navegue até a pasta /docker/ dentro do projeto 
    ```bash
-    cd nome-da-aplicacao/docker/
+    cd crud-pessoa/docker/
 
 3. Executar o Docker Compose Dentro da pasta /docker/, execute o Docker Compose para iniciar todos os serviços necessários para a aplicação:
 
