@@ -12,7 +12,7 @@
    <p:dialog widgetVar="dlgEnderecos" modal="true" header="Endereços"
              resizable="false" closable="true" showEffect="fade" hideEffect="fade"
              id="enderecosDialog" position="center" responsive="true" width="80%" height="80%"
-             onShow="PF('dlgEnderecos').content.css('overflow', 'hidden')" style="max-height:90vh; overflow:auto;"
+             onShow="PF('dlgEnderecos').content.css('overflow', 'hidden')" style="max-height:100vh; overflow:auto;"
              blockScroll="true">
       <div class="header-container">
          <h:form id="btn-crud-endereco">
@@ -32,22 +32,22 @@
                          emptyMessage="Nenhum endereco encontrado." paginator="true" rows="10" paginatorPosition="bottom"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15" scrollable="true" scrollHeight="90%">
-               <p:column headerText="Rua">
+               <p:column headerText="Rua" sortBy="#{endereco.logradouro}">
                   <h:outputText value="#{endereco.logradouro}"/>
                </p:column>
-               <p:column headerText="Número">
+               <p:column headerText="Número" sortBy="#{endereco.numero}">
                   <h:outputText value="#{endereco.numero}"/>
                </p:column>
-               <p:column headerText="Bairro">
+               <p:column headerText="Bairro" sortBy="#{endereco.bairro}">
                   <h:outputText value="#{endereco.bairro}"/>
                </p:column>
-               <p:column headerText="Cidade">
+               <p:column headerText="Cidade" sortBy="#{endereco.cidade}">
                   <h:outputText value="#{endereco.cidade}"/>
                </p:column>
-               <p:column headerText="Estado">
+               <p:column headerText="Estado" sortBy="#{endereco.estado}">
                   <h:outputText value="#{endereco.estado}"/>
                </p:column>
-               <p:column headerText="CEP">
+               <p:column headerText="CEP" sortBy="#{endereco.cep}">
                   <h:outputText value="#{endereco.cep}" mask="99999-999"/>
                </p:column>
                <p:column headerText="Ações" style="width:100px;text-align:center;">

@@ -28,19 +28,19 @@
                          emptyMessage="Nenhuma pessoa encontrada." paginator="true" rows="10" paginatorPosition="bottom"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15" scrollable="true" scrollHeight="100%"
-                         class="pessoa-table">
-                <p:column headerText="Código">
+                         class="pessoa-table" >
+                <p:column headerText="Código" sortBy="#{pessoa.id}">
                     #{pessoa.id}
                 </p:column>
-                <p:column headerText="Nome">
+                <p:column headerText="Nome" sortBy="#{pessoa.nome}">
                     #{pessoa.nome}
                 </p:column>
-                <p:column headerText="Data de Nascimento" >
+                <p:column headerText="Data de Nascimento" sortBy="#{pessoa.dataNascimento}">
                     <h:outputText value="#{pessoa.dataNascimento}" >
                         <f:convertDateTime pattern="dd/MM/yyyy" />
                     </h:outputText>
                 </p:column>
-                <p:column headerText="Sexo">
+                <p:column headerText="Sexo" sortBy="#{pessoa.sexo}">
                     #{pessoa.sexo}
                 </p:column>
 
