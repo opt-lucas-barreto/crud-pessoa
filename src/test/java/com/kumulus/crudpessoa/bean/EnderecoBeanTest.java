@@ -44,6 +44,14 @@ public class EnderecoBeanTest {
     @Test
     public void deveSalvarEnderecoComSucesso() {
         EnderecoDTO enderecoDTO = new EnderecoDTO();
+
+        enderecoDTO.setLogradouro("Rua das Flores");
+        enderecoDTO.setNumero(123);
+        enderecoDTO.setBairro("Jardim das Acácias");
+        enderecoDTO.setCidade("Cidade das Árvores");
+        enderecoDTO.setEstado("ES");
+        enderecoDTO.setCep("12345-678");
+
         enderecoBean.salvar(enderecoDTO);
         verify(enderecoBusiness, times(1)).salvar(enderecoDTO);
     }
