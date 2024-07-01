@@ -8,6 +8,7 @@ Para começar a usar a aplicação CRUD Pessoa, siga as instruções abaixo para
 
 ### Pré-requisitos
 
+
 Antes de iniciar, certifique-se de que você tem o Docker instalado e configurado em sua máquina. Se você não tem o Docker instalado, siga as instruções no [site oficial do Docker](https://www.docker.com/get-started) para instalá-lo em seu sistema operacional. Também é necessário ter instalado JDK 17 e MAVEN
 
 ### Executando aplicação com setup ##
@@ -16,7 +17,7 @@ Este processo somente pode ser realizado se você recebeu acesso aos scripts de 
 
 1. Execute o script .bat caso seu sistema operacional seja windows ou sh caso seja linux
 
-3. Após o passo anterior a aplicação estará no ar. Acessoa través do seguinte endereço:
+2. Após o passo anterior a aplicação estará no ar. Acessoa través do seguinte endereço:
 
    ```bash
    http://localhost:8080/crud-pessoa/
@@ -48,3 +49,5 @@ Este processo somente pode ser realizado se você recebeu acesso aos scripts de 
 
     ```bash
    http://localhost:8080/crud-pessoa/
+
+
