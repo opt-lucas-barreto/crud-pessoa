@@ -19,7 +19,7 @@ Antes de iniciar, certifique-se de que você tem o Docker instalado e configurad
    ```bash
    git clone https://github.com/opt-lucas-barreto/crud-pessoa.git
    
-2. Execute o comando maven:
+2. Dentro do diretório do projeto execute o comando maven:
 
     ```bash
    mvn clean install
