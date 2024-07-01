@@ -26,7 +26,7 @@ CREATE TABLE endereco (
   idPessoa INT NOT NULL,
   CONSTRAINT PK_Endereco PRIMARY KEY (id),
   CONSTRAINT FK_Endereco_Pessoa FOREIGN KEY (idPessoa) REFERENCES pessoa (id),
-  CONSTRAINT UC_Endereco_Estado_Cidade_Logradouro_Numero_Bairro_Cep_IdPessoa UNIQUE (estado, cidade, logradouro, numero, bairro, cep, idPessoa)
+  CONSTRAINT UC_Endereco UNIQUE (estado, cidade, logradouro, numero, bairro, cep, idPessoa)
 );
 
 INSERT INTO pessoa(nome, dataNascimento, sexo)

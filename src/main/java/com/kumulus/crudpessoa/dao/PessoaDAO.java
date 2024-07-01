@@ -44,7 +44,6 @@ public class PessoaDAO implements Serializable {
         try {
             return query.getSingleResult();
         } catch (Exception e) {
-            // Handle no result or non-unique result here
             return null;
         }
     }
