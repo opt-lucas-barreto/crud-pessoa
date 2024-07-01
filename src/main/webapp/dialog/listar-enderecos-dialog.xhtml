@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+   <link rel="stylesheet" href="../estilos/estilos.css"/>
+</h:head>
+<f:view>
+   <p:dialog widgetVar="dlgEnderecos" modal="true" header="Endereços"
+             resizable="false" closable="true" showEffect="fade" hideEffect="fade"
+             id="enderecosDialog" position="center" responsive="true" width="80%" height="80%"
+             onShow="PF('dlgEnderecos').content.css('overflow', 'hidden')" style="max-height:100vh; overflow:auto;"
+             blockScroll="true">
+      <div class="header-container">
+         <h:form id="btn-crud-endereco">
+            <p:panelGrid columns="2" id="panel">
+               <p:commandButton id="btnNovoEndereco" value="Novo Endereço" styleClass="ui-button" icon="pi pi-plus"  title="Adicionar novo endereço" style="margin-right: 5px; white-space: nowrap;">
+                  <p:ajax  listener="#{enderecoBean.novo}"  update=":formEnderecos:enderecosTable messages"  oncomplete="PF('dlgEditEndereco').show()"/>
+               </p:commandButton>
+               <p:commandButton id="mostrarTodos" value="Mostrar Todos" styleClass="ui-button" icon="pi pi-list"  title="Mostrar todos enderços da pessoa" style="margin-right: 10px; white-space: nowrap;">
+                  <p:ajax listener="#{enderecoBean.getEnderecosList}" update=":formEnderecos:enderecosTable"/>
+               </p:commandButton>
+            </p:panelGrid>
+         </h:form>
+      </div>
+      <h:form id="formEnderecos">
+         <div style="max-height:80vh; overflow:auto;">
+            <p:dataTable var="endereco" value="#{enderecoBean.buscarEnderecosPorPessoaSelecionada()}" id="enderecosTable"
+                         emptyMessage="Nenhum endereco encontrado." paginator="true" rows="10" paginatorPosition="bottom"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" scrollable="true" scrollHeight="90%">
+               <p:column headerText="Rua" sortBy="#{endereco.logradouro}">
+                  <h:outputText value="#{endereco.logradouro}"/>
+               </p:column>
+               <p:column headerText="Número" sortBy="#{endereco.numero}">
+                  <h:outputText value="#{endereco.numero}"/>
+               </p:column>
+               <p:column headerText="Bairro" sortBy="#{endereco.bairro}">
+                  <h:outputText value="#{endereco.bairro}"/>
+               </p:column>
+               <p:column headerText="Cidade" sortBy="#{endereco.cidade}">
+                  <h:outputText value="#{endereco.cidade}"/>
+               </p:column>
+               <p:column headerText="Estado" sortBy="#{endereco.estado}">
+                  <h:outputText value="#{endereco.estado}"/>
+               </p:column>
+               <p:column headerText="CEP" sortBy="#{endereco.cep}">
+                  <h:outputText value="#{endereco.cep}" mask="99999-999"/>
+               </p:column>
+               <p:column headerText="Ações" style="width:100px;text-align:center;">
+                  <p:commandButton icon="pi pi-pencil" title="Editar" update=":editEnderecoDialog" oncomplete="PF('dlgEditEndereco').show()" style="margin-right: 5px">
+                     <f:setPropertyActionListener target="#{enderecoBean.enderecoSelecionado}" value="#{endereco}" />
+                  </p:commandButton>
+
+                  <p:commandButton icon="pi pi-trash" title="Excluir" oncomplete="PF('confirmDialogEndereco').show();" >
+                     <f:setPropertyActionListener target="#{enderecoBean.enderecoSelecionado}" value="#{endereco}" />
+                  </p:commandButton>
+
+               </p:column>
+            </p:dataTable>
+         </div>
+         <p:confirmDialog id="confirmDialogEndereco" widgetVar="confirmDialogEndereco" global="true" showEffect="fade" hideEffect="fade"
+                          header="Confirmação" icon="pi pi-exclamation-triangle" message="Tem certeza que deseja excluir este endereço?" responsive="true">
+            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" >
+               <p:ajax listener="#{enderecoBean.excluir}" oncomplete="PF('confirmDialogEndereco').hide();" update=":formEnderecos:enderecosTable messages" />
+            </p:commandButton>
+            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" action="PF('confirmDialogEndereco').hide();" update=":formEnderecos;"/>
+         </p:confirmDialog>
+      </h:form>
+      <ui:include src="salvar-endereco-dialog.xhtml"/>
+   </p:dialog>
+</f:view>
+</html>

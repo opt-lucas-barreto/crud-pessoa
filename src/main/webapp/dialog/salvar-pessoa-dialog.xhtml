@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+   <link rel="stylesheet" href="../estilos/estilos.css"/>
+
+</h:head>
+<f:view>
+   <p:dialog header="#{pessoaBean.pessoaSelecionada.id != null ? 'Editar Pessoa' : 'Nova Pessoa'}" widgetVar="dlgEditPessoa" modal="true" id="editDialog"  styleClass="edit-pessoa-dialog">
+      <h:form id="formEditarPessoa">
+         <p:panelGrid columns="2" id="panel">
+            <p:outputLabel for="nome" value="Nome:" />
+            <p:inputText id="nome" value="#{pessoaBean.pessoaSelecionada.nome}" />
+
+            <p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
+            <p:calendar id="dataNascimento" value="#{pessoaBean.pessoaSelecionada.dataNascimento}" pattern="dd/MM/yyyy" />
+
+            <p:outputLabel for="sexo" value="Sexo:" />
+            <p:selectOneMenu id="sexo" value="#{pessoaBean.pessoaSelecionada.sexo}" styleClass="selectOneMenuCustom">
+               <f:selectItem itemLabel="Selecione" itemValue="" />
+               <f:selectItem itemLabel="Masculino" itemValue="M" />
+               <f:selectItem itemLabel="Feminino" itemValue="F" />
+            </p:selectOneMenu>
+         </p:panelGrid>
+         <p:commandButton value="Salvar"
+                          actionListener="#{pessoaBean.salvarOuEditar}"
+                          update="formPessoas:pessoasTable messages"
+                          oncomplete="PF('dlgEditPessoa').hide();"/>
+      </h:form>
+   </p:dialog>
+</f:view>
+</html>
+
