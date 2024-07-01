@@ -56,6 +56,7 @@ public class PessoaBeanTest {
     @Test
     public void deveEditarPessoaComSucesso() {
         pessoaDTO.setNome("Nome Editado");
+        when(pessoaBusiness.buscarPessoa(any(PessoaDTO.class))).thenReturn(pessoaDTO);
         pessoaBean.setPessoaSelecionada(pessoaDTO);
         pessoaBean.salvarOuEditar();
         verify(pessoaBusiness, times(1)).editar(pessoaDTO);
