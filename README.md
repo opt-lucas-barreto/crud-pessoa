@@ -22,7 +22,7 @@ Antes de iniciar, certifique-se de que você tem o Docker instalado e configurad
 2. Dentro do diretório do projeto execute o comando maven:
 
     ```bash
-   mvn clean install
+   mvn clean install package
 
 3. Navegar até a Pasta do Docker Após clonar o repositório, navegue até a pasta /docker/ dentro do projeto 
    ```bash
