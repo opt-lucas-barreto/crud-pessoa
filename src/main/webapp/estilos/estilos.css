@@ -15,7 +15,8 @@
 
 .div-table-pessoas {
     overflow-x: auto;
-    height: 90vh;
+    height: 89vh;
+    max-height: 90%;
     width: auto;
     max-width: 100%;
 }

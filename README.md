@@ -8,15 +8,16 @@ Para começar a usar a aplicação CRUD Pessoa, siga as instruções abaixo para
 
 ### Pré-requisitos
 
-Antes de iniciar, certifique-se de que você tem o Docker instalado e configurado em sua máquina. Se você não tem o Docker instalado, siga as instruções no [site oficial do Docker](https://www.docker.com/get-started) para instalá-lo em seu sistema operacional. Também é necessário ter instalado JDK 17 e MAVEN 
+
+Antes de iniciar, certifique-se de que você tem o Docker instalado e configurado em sua máquina. Se você não tem o Docker instalado, siga as instruções no [site oficial do Docker](https://www.docker.com/get-started) para instalá-lo em seu sistema operacional. Também é necessário ter instalado JDK 17 e MAVEN
 
 ### Executando aplicação com setup ##
 
-   Este processo somente pode ser realizado se você recebeu acesso aos scripts de inicialização da aplicação
+Este processo somente pode ser realizado se você recebeu acesso aos scripts de inicialização da aplicação
 
 1. Execute o script .bat caso seu sistema operacional seja windows ou sh caso seja linux
-   
-3. Após o passo anterior a aplicação estará no ar. Acessoa través do seguinte endereço:
+
+2. Após o passo anterior a aplicação estará no ar. Acessoa través do seguinte endereço:
 
    ```bash
    http://localhost:8080/crud-pessoa/
@@ -29,13 +30,13 @@ Antes de iniciar, certifique-se de que você tem o Docker instalado e configurad
 
    ```bash
    git clone https://github.com/opt-lucas-barreto/crud-pessoa.git
-   
+
 2. Dentro do diretório do projeto execute o comando maven:
 
     ```bash
    mvn clean install package
 
-3. Navegar até a Pasta do Docker Após clonar o repositório, navegue até a pasta /docker/ dentro do projeto 
+3. Navegar até a Pasta do Docker Após clonar o repositório, navegue até a pasta /docker/ dentro do projeto
    ```bash
     cd /docker/
 
@@ -43,7 +44,7 @@ Antes de iniciar, certifique-se de que você tem o Docker instalado e configurad
 
     ```bash
    docker-compose up -d
-   
+
 5. Acessar a Aplicação Com os serviços devidamente executando, você pode acessar a aplicação através do navegador web no seguinte endereço:
 
     ```bash
